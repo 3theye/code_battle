@@ -3,12 +3,43 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.thjug.battle</groupId>
-	<artifactId>Battle</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>CodeBattle</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>Battle</name>
-	<url>http://maven.apache.org</url>
+	<name>CodeBattle</name>
+
+	<organization>
+		<name>Bgile</name>
+		<url>http://bgile.thjug.com</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>@nuboat</id>
+			<name>Peerapat Asoktummarungsri</name>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.8.5</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -18,20 +49,9 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+				 <showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.5.2</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 </project>

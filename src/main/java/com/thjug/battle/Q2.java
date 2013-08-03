@@ -1,36 +1,47 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Attribution
+ * CC BY
+ * This license lets others distribute, remix, tweak,
+ * and build upon your work, even commercially,
+ * as long as they credit you for the original creation.
+ * This is the most accommodating of licenses offered.
+ * Recommended for maximum dissemination and use of licensed materials.
+ *
+ * http://creativecommons.org/licenses/by/3.0/
+ * http://creativecommons.org/licenses/by/3.0/legalcode
  */
 package com.thjug.battle;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author PeerapatAsoktummarun
+ * @author @nuboat
  */
 public final class Q2 {
 
-	final Charset charset = Charset.forName("UTF-8");
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(Q2.class);
+
+	private static final String INPUT = "/temp/q2/numbers.txt";
+	private static final String OUTPUT = "/temp/q2/run_result.txt";
 
 	public void execute() throws IOException {
 		final long start = System.currentTimeMillis();
 
 		final Set<String> set = new HashSet<>();
 		final Map<String, Integer> map = new HashMap<>();
-		
-		try (final BufferedReader reader = Files.newBufferedReader(Paths.get("/home/numbers2.txt"), charset)) {
+
+		try (final BufferedReader reader = Files.newBufferedReader(Paths.get(INPUT), StandardCharsets.UTF_8)) {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				if (map.containsKey(line)) {
@@ -48,9 +59,9 @@ public final class Q2 {
 			result.append(key).append(": ").append(map.get(key)).append("\n");
 		}
 
-		writeSmallTextFile("/home/run_result2.txt", result.toString());
+		writeSmallTextFile(OUTPUT, result.toString());
 		final long end = System.currentTimeMillis();
-		Logger.getLogger("Q2").log(Level.INFO, "run in {0} ms", (end-start));
+		LOG.info("run in {} ms", (end-start));
 	}
 
 	private void writeSmallTextFile(final String aFileName, final String data) throws IOException {

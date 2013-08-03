@@ -1,6 +1,14 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Attribution
+ * CC BY
+ * This license lets others distribute, remix, tweak,
+ * and build upon your work, even commercially,
+ * as long as they credit you for the original creation.
+ * This is the most accommodating of licenses offered.
+ * Recommended for maximum dissemination and use of licensed materials.
+ *
+ * http://creativecommons.org/licenses/by/3.0/
+ * http://creativecommons.org/licenses/by/3.0/legalcode
  */
 package com.thjug.battle;
 
@@ -11,23 +19,30 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author PeerapatAsoktummarun
+ * @author @nuboat
  */
 public final class Q1 {
+
+	private static final Logger LOG = LoggerFactory.getLogger(Q1.class);
+
+	private static final String INPUT = "/temp/q1/numbers.txt";
+	private static final String OUTPUT = "/temp/q1/run_result.txt";
 
 	public void execute() throws IOException {
 		final long start = System.currentTimeMillis();
 		final String data = find().toString();
-		Logger.getLogger("Q1").info(data);
-		writeSmallTextFile("/home/run_result1.txt", data);
+		LOG.debug("Q1: {}", data);
+
+		writeSmallTextFile(OUTPUT, data);
 		final long end = System.currentTimeMillis();
 
-		Logger.getLogger("Q1").log(Level.INFO, "run in {0} ms", (end-start));
+		LOG.info("run in {} ms", (end-start));
 	}
 
 	private List<String> readSmallTextFile(final String aFileName) throws IOException {
@@ -42,7 +57,7 @@ public final class Q1 {
 
 	private List<Integer> find() throws IOException {
 
-		final List<String> data = readSmallTextFile("/home/numbers1.txt");
+		final List<String> data = readSmallTextFile(INPUT);
 
 		final List<Integer> result = new LinkedList();
 
