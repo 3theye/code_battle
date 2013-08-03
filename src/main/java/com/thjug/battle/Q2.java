@@ -56,7 +56,7 @@ public final class Q2 {
 
 		final StringBuilder result = new StringBuilder();
 		for (final String key : set) {
-			result.append(key).append(": ").append(map.get(key)).append("\n");
+			result.append("\"").append(key).append("\", ").append(map.get(key)).append("\n");
 		}
 
 		writeSmallTextFile(OUTPUT, result.toString());

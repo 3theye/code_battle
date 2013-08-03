@@ -36,10 +36,13 @@ public final class Q1 {
 
 	public void execute() throws IOException {
 		final long start = System.currentTimeMillis();
-		final String data = find().toString();
-		LOG.debug("Q1: {}", data);
 
-		writeSmallTextFile(OUTPUT, data);
+		final StringBuilder result = new StringBuilder();
+		for (final Integer d : find()) {
+			result.append(d).append("\n");
+		}
+
+		writeSmallTextFile(OUTPUT, result.toString());
 		final long end = System.currentTimeMillis();
 
 		LOG.info("run in {} ms", (end-start));
