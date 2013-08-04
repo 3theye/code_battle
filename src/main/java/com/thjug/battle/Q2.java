@@ -13,16 +13,19 @@
 package com.thjug.battle;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
-
-import org.slf4j.LoggerFactory;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -30,14 +33,10 @@ import org.slf4j.LoggerFactory;
  */
 public final class Q2 {
 
-	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(Q2.class);
-
 	private static final String INPUT = "/temp/q2/numbers.txt";
 	private static final String OUTPUT = "/temp/q2/run_result.txt";
 
 	public void execute() throws IOException {
-		final long start = System.currentTimeMillis();
-
 		final Set<String> set = new HashSet<>();
 		final Map<String, Integer> map = new HashMap<>();
 
@@ -54,18 +53,34 @@ public final class Q2 {
 			}
 		}
 
-		final StringBuilder result = new StringBuilder();
-		for (final String key : set) {
-			result.append("\"").append(key).append("\", ").append(map.get(key)).append("\n");
-		}
-
-		writeSmallTextFile(OUTPUT, result.toString());
-		final long end = System.currentTimeMillis();
-		LOG.info("run in {} ms", (end-start));
+		write(set, map);
 	}
 
-	private void writeSmallTextFile(final String aFileName, final String data) throws IOException {
-		Files.write(Paths.get(aFileName), data.getBytes());
+	private void write(final Set<String> set, final Map<String, Integer> map)
+			throws IOException {
+		final File f = new File(OUTPUT);
+
+		try (
+			final FileWriter fr = new FileWriter(f);
+			final BufferedWriter br  = new BufferedWriter(fr)) {
+
+			for (final String key : set) {
+				br.write("\"");
+				br.write(key);
+				br.write("\", ");
+				br.write(map.get(key));
+				br.write("\n");
+			}
+
+		}
+	}
+
+	public static void main(final String[] args) throws Exception {
+		final long start = System.currentTimeMillis();
+		new Q2().execute();
+		final long end = System.currentTimeMillis();
+
+		System.out.println(end - start);
 	}
 
 }

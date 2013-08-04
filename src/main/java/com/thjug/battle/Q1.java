@@ -20,32 +20,22 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  *
  * @author @nuboat
  */
 public final class Q1 {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Q1.class);
-
 	private static final String INPUT = "/temp/q1/numbers.txt";
 	private static final String OUTPUT = "/temp/q1/run_result.txt";
 
 	public void execute() throws IOException {
-		final long start = System.currentTimeMillis();
-
 		final StringBuilder result = new StringBuilder();
 		for (final Integer d : find()) {
 			result.append(d).append("\n");
 		}
 
 		writeSmallTextFile(OUTPUT, result.toString());
-		final long end = System.currentTimeMillis();
-
-		LOG.info("run in {} ms", (end-start));
 	}
 
 	private List<String> readSmallTextFile(final String aFileName) throws IOException {
@@ -73,6 +63,14 @@ public final class Q1 {
 		}
 
 		return result;
+	}
+
+	public static void main(final String[] args) throws Exception {
+		final long start = System.currentTimeMillis();
+		new Q1().execute();
+		final long end = System.currentTimeMillis();
+
+		System.out.println(end - start);
 	}
 
 }
